@@ -1,0 +1,66 @@
+import xlrd
+from tkinter import *
+import random
+import tkinter.messagebox
+
+sf = random.randint(100000000000000, 999999999999999)
+windows = Tk()
+windows.title("订单信息")
+windows.geometry('480x500+750+200')
+frm5 = Frame(windows, )
+frm5.config(bg='white', width=480, height=500, )
+frm5.place(x=0, y=0, )
+
+canvas = Canvas(windows, bg='yellow', height=50, width=170)
+
+#image_file = PhotoImage(file=r'666.png')
+#canvas.create_image(0, 0, anchor='nw', image=image_file)
+
+texts = Text(canvas, width=30, height=1, font=('楷体', 14))
+texts.place(x=100, y=0)
+texts.insert("end",sf)#订单编号
+
+canvas.pack()
+canvas.place(x=160, y=0)
+
+lables = Label(text="国内承运快递：",font=('楷体', 14))
+lables.place(x=0, y=15)
+
+lable = Label(text="请完善您的收货订单", fg='red', font=('楷体', 14), )
+lable.place(x=150, y=60)
+
+a = Label(frm5, text='收件人姓名：', font=('楷体', 14), ).place(x=90, y=100)
+p = Label(frm5, text='    手机号：', font=('楷体', 14), ).place(x=90, y=140)
+m = Label(frm5, text='      地址：', font=('楷体', 14), ).place(x=90, y=180)
+
+ae = Entry(frm5, text='1')
+ae.place(x=235, y=100)
+pe = Entry(frm5, text='2')
+pe.place(x=235, y=140)
+me = Entry(frm5, text='3')
+me.place(x=235, y=180)
+
+text2 = Text(frm5, width=30, height=10, font=('楷体', 14), )  # 用来放选项内容
+text2.place(x=90, y=230)
+t1 = '*'
+t2 = '='
+
+
+def show():
+    yue = str(1)
+    abc = tkinter.messagebox.showinfo("温馨提示", "交易完成，欢迎下次光临\n您的余额还有：" + yue + "   元")
+    windows.destroy()
+    print("交易完成，欢迎下次光临")  # 这里弹窗提醒
+
+
+def rt():
+    windows.destroy()
+
+
+pay = Button(frm5, text="确定", bg="#3ca3fb", fg="white", width=10, height=1, font=('楷体', 14), command=show)
+pay.place(x=120, y=450)
+
+fanhui = Button(frm5, text="返回", bg="#3ca3fb", fg="white", width=10, height=1, font=('楷体', 14), command=rt)
+fanhui.place(x=270, y=450)
+
+windows.mainloop()
