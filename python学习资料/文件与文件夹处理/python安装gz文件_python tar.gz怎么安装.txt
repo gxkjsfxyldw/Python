@@ -1,0 +1,1 @@
+安装tar.gz包：cd到解压后路径,python setup.py install

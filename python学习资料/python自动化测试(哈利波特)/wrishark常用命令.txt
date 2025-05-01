@@ -1,0 +1,44 @@
+3、要让Wireshark显示所有HTTP响应数据包，显示过滤器的写法为:http.response。
+
+4、要让Wireshark显示包含所有HTTP数据包，但包含GET方法的HTTP请求数据包除外，显示过滤器的写法为:http.request and not http.request.method == GET。
+
+基于HTTP状态码的显示过滤器
+1、要让Wireshark显示包含HTTP错误状态码的HTTP响应数据包:http.request.code >= 400。
+
+2、要让Wireshark只显示包含HTTP客户端错误状态码的HTTP响应数据包:http.response.code >=400 and http.response.code <= 499。
+
+3、要让Wireshark只显示包含HTTP服务器端错误状态码的HTTP响应数据包:http.response.code <=599。
+
+4、要让Wireshark只显示状态码为404的HTTP响应数据包:http.response.code == 404。
+
+5、过滤所有的http响应包：http.response==1
+
+6、过滤所有的http请求，貌似也可以使用http.request：http.request==1
+
+7、wireshark过滤所有请求方式为POST的http请求包，注意POST为大写：http.request.method==POST
+
+8、过滤含有指定cookie的http数据包：http.cookie contains guid
+
+9、过滤请求的uri，取值是域名后的部分：http.request.uri==”/online/setpoint”
+
+10、过滤含域名的整个url则需要使用http.request.full_uri：http.request.full_uri==” http://task.browser.360.cn/online/setpoint”
+
+11、过滤http头中server字段含有nginx字符的数据包：http.server contains “nginx”
+
+12、过滤content_type是text/html的http响应、post包，即根据文件类型过滤http数据包：http.content_type == “text/html”
+
+13、过滤content_encoding是gzip的http包：http.content_encoding == “gzip”
+
+14、根据transfer_encoding过滤：http.transfer_encoding == “chunked”
+
+15、根据content_length的数值过滤：http.content_length == 279 或 http.content_length_header == “279″
+
+16、过滤所有含有http头中含有server字段的数据包：http.server
+
+17、过滤HTTP/1.1版本的http包，包括请求和响应：http.request.version == “HTTP/1.1″
+
+18、过滤http响应中的phrase：http.response.phrase == “OK”
+
+19、显示前1000个数据包：fream.number <= 1000
+
+20、显示序列号10-20内的数据包：fream.number <= 10 and fream.number <= 20

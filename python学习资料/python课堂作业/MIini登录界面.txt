@@ -1,0 +1,90 @@
+'''
+#要求让用户输入一个姓名，如果这个姓名在列表里存在，就提示用户名称已存在，添加失败；如果这个姓名在列表里不存在，提示让用户输入年龄，并将用户输入的姓名和年龄添加到这个列表里。
+persons = [{'name': 'zhangsan', 'age': 18}, {'name': 'lisi', 'age': 20}, {'name': 'wangwu', 'age': 19},{'name': 'jerry', 'age': 21}]
+a=input('请输入姓名：')
+b=0
+n=len(persons)# 4
+t=0
+p=0
+for i in persons:
+    if a==persons[t]['name']:
+        p=0
+        break
+    else :
+        p=1
+    t+=1
+
+if p==1:
+    print('用户不存在，请输入年龄：')
+    b=float(input())
+    persons.append({'name': a, 'age': b})
+
+elif p==0:
+    print('用户已经存在，添加失败')
+
+print(persons)
+'''
+
+# 输入1注册  输入2 登入  输入 3 退出
+date = {}  # 建立字典date键为账号
+while (1):
+    print('-----------------------------')
+    print('--  欢迎来到 MiniQQ 登陆界面  --')
+    print('-----------------------------')
+    print('1:QQ注册   2:QQ登入   3:修改密码')
+    print('4:修改账号  5:注销账号  6:QQ退出')
+    chioce=int(input('请选择功能：'))
+
+
+    if chioce==5:#注销账号
+        date.clear()
+        print('清除所有账号完毕！over! date=',date)
+        continue
+    if chioce==6:#QQ退出
+        print('欢迎下次光临！')
+        break
+    account = int(input('请输入QQ账号：'))
+    lock = int(input('请输入密码：'))
+
+    if chioce==1:#注册
+        if account=='':
+            print('账号为空！无效')
+        elif account in date:
+            print('号存在！无效')
+        else:
+            date[account] = lock#账号和密码保存在字典中
+    if chioce==2:#QQ登入
+        if date.get(account)==lock:
+            print('登陆成功！')
+        elif account not in date:
+            print('账号不存在，请注册')
+        else:
+            print('输入错误！')
+
+    if chioce==3:#修改密码
+        while(1):
+            if date.get(account)==lock:
+                b=int(input('输入新的密码:'))
+                date[account]=b
+                print('修改成功！')
+                print('账号新的密码为：',date[account])
+                break
+            else:
+                print('输入有误，请重新输入')
+                account = int(input('请输入QQ账号：'))
+                lock = int(input('请输入密码：'))
+    if chioce==4:#修改账号
+        while (1):
+            if date.get(account) == lock:
+                date.pop(account)
+                account = int(input('请输入新的QQ账号：'))
+                lock = int(input('请输入新的密码：'))
+                date[account] = lock
+                print('修改成功！')
+                print('新的账号和密码为：date=', date)
+                break
+            else:
+                print('输入有误，请重新输入')
+                account = int(input('请输入QQ账号：'))
+                lock = int(input('请输入密码：'))
+    print('当前账号情况: date=',date)
